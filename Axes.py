@@ -20,7 +20,11 @@ ax.set_ylim(ymax=2)
 # plt.xlim(-1, 20)
 # plt.ylim(-1, 6)
 
-ax.grid()
+ax.minorticks_on()
+ax.grid(which='major', lw=2)
+ax.grid(which='minor')
+
+ax.xaxis.set_minor_locator(NullLocator())
 
 # LinearLocator sets fixed amount of marks
 # ax.xaxis.set_major_locator(LinearLocator(5))
