@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 
 print(matplotlib.get_backend())
 
+# Global redefinition of dictionary key that specifies the limits of the standard display
+matplotlib.rcParams["axes.formatter.limits"] = (-4, 4)
+
 y = np.arange(0, 5, 1)
 x = np.array([a*a for a in y])
 

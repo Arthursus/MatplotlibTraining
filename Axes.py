@@ -2,16 +2,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import NullLocator, LinearLocator, MultipleLocator, IndexLocator, FixedLocator, LogLocator,\
     MaxNLocator
+from matplotlib.ticker import NullFormatter, FormatStrFormatter, FuncFormatter, ScalarFormatter, FixedFormatter
+
+
+def format0y(x, pos):
+    return f"[{x}]" if x < 0 else f"({x})"
+
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot()
 x = np.arange(-np.pi/2, np.pi, 0.1)
-y = np.sin(x)
+y = np.sin(x) * 1e5
 ax.plot(x, y)
 
 # Set axes limits
-ax.set_xlim(xmin=-3)
-ax.set_ylim(ymax=2)
+ax.set_xlim(xmin=-2)
+# ax.set_ylim(ymax=1)
 
 # The same
 # ax0.set(xlim=(-5, 30), ylim=(-1, 6))
@@ -36,12 +42,32 @@ ax.xaxis.set_minor_locator(NullLocator())
 # ax.xaxis.set_major_locator(IndexLocator(base=0.5, offset=-0.43))
 
 # FixedLocator sets marks in fixed positions
-ax.xaxis.set_major_locator(FixedLocator([-2, -1, 1, 2, 3]))
+ax.xaxis.set_major_locator(FixedLocator([-2, -1, 0, 1, 2, 3]))
 
 # LogLocator is for logarithm divisions
 # ax.xaxis.set_major_locator(LogLocator(base=2))
 
 # MaxNLocator divide on specified maximum amount of marks
 ax.yaxis.set_major_locator(MaxNLocator(10))
+
+# Manage ticks
+
+# ax.set_xticklabels([])
+# ax.set_yticklabels([])
+
+# ax.xaxis.set_major_formatter(NullFormatter())
+
+# ax.yaxis.set_major_formatter(FormatStrFormatter("y = %.2f"))
+
+# Format with reference function
+# ax.yaxis.set_major_formatter(FuncFormatter(format0y))
+
+# Redefine default ScalarFormatter
+sf = ScalarFormatter()
+sf.set_powerlimits((-4, 4))
+ax.yaxis.set_major_formatter(sf)
+
+# FixedFormatter is used with FixedLocator
+ax.xaxis.set_major_formatter(FixedFormatter(['-II', '-I', 'O', 'I', 'II', 'III']))
 
 plt.show()
