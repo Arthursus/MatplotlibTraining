@@ -10,10 +10,21 @@ def format0y(x, pos):
 
 
 fig = plt.figure(figsize=(8, 6))
+fig.set(facecolor='#eee')
 ax = fig.add_subplot()
+ax.set(facecolor='#AAFFAA')
 x = np.arange(-np.pi/2, np.pi, 0.1)
 y = np.sin(x) * 1e5
 ax.plot(x, y)
+
+plt.figtext(0.05, 0.6, "Text in a figure area", fontsize=18, c='r')
+fig.suptitle("Figure title")
+ax.set_xlabel("Ox")
+ax.set_ylabel("Oy")
+# plt.xlabel("Ox")
+# plt.ylabel("Oy")
+ax.text(-1, 1.0, "Arbitrary text in an axes area", bbox={'boxstyle': 'darrow', 'facecolor': '#AAAAFF'})
+ax.annotate("Annotation", xy=(1.0, -0.4), xytext=(2.0, 0.9), arrowprops={'facecolor': 'gray', 'shrink': 0.1})
 
 # Set axes limits
 ax.set_xlim(xmin=-2)
@@ -28,7 +39,7 @@ ax.set_xlim(xmin=-2)
 
 ax.minorticks_on()
 ax.grid(which='major', lw=2)
-ax.grid(which='minor')
+ax.grid(which='minor', ls=':')
 
 ax.xaxis.set_minor_locator(NullLocator())
 
