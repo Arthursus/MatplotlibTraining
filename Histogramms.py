@@ -34,3 +34,9 @@ ax.grid()
 # fig2.show()
 
 plt.show()
+
+vals = [10, 40, 23, 30, 7]
+labels = ['Toyota', 'BMW', 'Lexus', 'Audi', 'Lada']
+expl = (0.1, 0.2, 0, 0, 0)
+plt.pie(vals, labels=labels, autopct='%.2f', explode=expl, wedgeprops=dict(width=0.7), shadow=True)
+plt.show()
