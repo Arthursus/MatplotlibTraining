@@ -1,12 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-x = [f'H{i+1}' for i in range(10)]
-y = np.random.randint(-20, 20, len(x))
+# x = [f'H{i+1}' for i in range(10)]
+# y = np.random.randint(-20, 20, len(x))
 
-fig1 = plt.figure(figsize=(6, 4))
-ax = fig1.add_subplot()
-ax.bar(x, y, width=0.5, linewidth=2, edgecolor='r', yerr=2, bottom=10)
+x = np.arange(10)
+y1 = np.random.randint(3, 20, len(x))
+y2 = np.random.randint(3, 20, len(x))
+
+fig = plt.figure(figsize=(6, 4))
+ax = fig.add_subplot()
+# ax.bar(x, y, width=0.5, linewidth=2, edgecolor='r', yerr=2, bottom=10)
+w = 0.3
+ax.bar(x - w/2, y1, width=w)
+ax.bar(x + w/2, y2, width=w)
 ax.grid()
 
 # y = np.random.normal(0, 2, 500)
