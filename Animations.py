@@ -44,3 +44,29 @@ animation = FuncAnimation(
 
 # plt.ioff()
 plt.show()
+
+
+fig = plt.figure(figsize=(10, 6))
+ax_3d = fig.add_subplot(projection='3d')
+
+x = np.arange(-2 * np.pi, 2 * np.pi, 0.5)
+y = np.arange(-2 * np.pi, 2 * np.pi, 0.5)
+xgrid, ygrid = np.meshgrid(x, y)
+
+frames = []
+phasa = np.arange(0, 2*np.pi, 0.5)
+for p in phasa:
+    zgrid = np.sin(xgrid + p) * np.sin(ygrid) / (xgrid * ygrid)
+
+    line = ax_3d.plot_surface(xgrid, ygrid, zgrid, color='b')
+    frames.append([line])
+
+animation = ArtistAnimation(
+    fig,                # Figure displaying animation
+    frames,             # Frames
+    interval=50,        # Delay between frames (ms)
+    blit=True,          # Double buffering
+    repeat=True         # Cycling of animation
+)
+
+plt.show()
